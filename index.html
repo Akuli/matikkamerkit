@@ -3,140 +3,181 @@
 
 <head>
     <title>Matikkamerkit</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="clipboard.min.js"></script>
     <script>
-    // https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
-    function copyStringToClipboard (str) {
-       // Create new element
-       var el = document.createElement('textarea');
-       // Set value (string to be copied)
-       el.value = str;
-       // Set non-editable to avoid focus and move outside of view
-       el.setAttribute('readonly', '');
-       el.style = {position: 'absolute', left: '-9999px'};
-       document.body.appendChild(el);
-       // Select text inside element
-       el.select();
-       // Copy text to clipboard
-       document.execCommand('copy');
-       // Remove temporary element
-       document.body.removeChild(el);
-    }
-
-    const characters = [
-        ["Kreikkalaiset aakkoset", [
-            '\u0391', '\u03b1',
-            '\u0392', '\u03b2',
-            '\u0393', '\u03b3',
-            '\u0394', '\u03b4',
-            '\u0395', '\u03b5',
-            '\u0396', '\u03b6',
-            '\u0397', '\u03b7',
-            '\u0398', '\u03b8',
-            '\u0399', '\u03b9',
-            '\u039a', '\u03ba',
-            '\u039b', '\u03bb',
-            '\u039c', '\u03bc',
-            '\u039d', '\u03bd',
-            '\u039e', '\u03be',
-            '\u039f', '\u03bf',
-            '\u03a0', '\u03c0',
-            '\u03a1', '\u03c1',
-            '\u03a3', '\u03c3',
-            '\u03a4', '\u03c4',
-            '\u03a5', '\u03c5',
-            '\u03a6', '\u03c6',
-            '\u03a7', '\u03c7',
-            '\u03a8', '\u03c8',
-            '\u03a9', '\u03c9',
-        ]],
-        ["Vertailuoperaattorit", [
-            '\u2265', '\u2264', '\u2248',
-        ]],
-        ["Logiikka", [
-            '\u21d0', '\u21d2', '\u21d4',
-            '\u2200', '\u2203',
-            '\u21af', '\u25a1',
-        ]],
-        ["Joukko-oppi", [
-            '\u2208',
-            '\u2209',
-            '\u2282',
-            '\u2284',
-            '\u2286',
-            '\u2288',
-            '\u228a',
-            '\u2205',
-        ]],
-        ["Lukujoukot", [
-            '\u2115',
-            '\u2115\u2080',
-            '\u2115\u2081',
-            '\u2124',
-            '\u2124\u208a',
-            '\u211a',
-            '\u211d',
-            '\u2102',
-        ]],
-        ["Yläindeksit", [
-            '\u2070',
-            '\xb9',
-            '\xb2',
-            '\xb3',
-            '\u2074',
-            '\u2075',
-            '\u2076',
-            '\u2077',
-            '\u2078',
-            '\u2079',
-        ]],
-        ["Alaindeksit", [
-            '\u2080',
-            '\u2081',
-            '\u2082',
-            '\u2083',
-            '\u2084',
-            '\u2085',
-            '\u2086',
-            '\u2087',
-            '\u2088',
-            '\u2089',
-        ]],
-        ["Muita merkkejä", [
-            '\u221e',
-            '\u222b',
-            '\u2192',
-        ]],
-    ];
-
-    document.addEventListener('DOMContentLoaded', () => {
-        for (let [titleText, characterList] of characters) {
-            header = document.createElement('h3');
-            header.appendChild(document.createTextNode(titleText));
-            document.getElementById('character-display').appendChild(header);
-
-            for (let text of characterList) {
-                button = document.createElement('button');
-                button.onclick = (() => copyStringToClipboard(text));
-                button.appendChild(document.createTextNode(text));
-                document.getElementById('character-display').appendChild(button);
-            }
+        // https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
+        function copyStringToClipboard(str) {
+            // Create new element
+            var el = document.createElement('textarea');
+            // Set value (string to be copied)
+            el.value = str;
+            // Set non-editable to avoid focus and move outside of view
+            el.setAttribute('readonly', '');
+            el.style = {position: 'absolute', left: '-9999px'};
+            document.body.appendChild(el);
+            // Select text inside element
+            el.select();
+            // Copy text to clipboard
+            document.execCommand('copy');
+            // Remove temporary element
+            document.body.removeChild(el);
         }
-    });
+
+        const characters = [
+            ["Kreikkalaiset aakkoset", [
+                '\u0391', '\u03b1',
+                '\u0392', '\u03b2',
+                '\u0393', '\u03b3',
+                '\u0394', '\u03b4',
+                '\u0395', '\u03b5',
+                '\u0396', '\u03b6',
+                '\u0397', '\u03b7',
+                '\u0398', '\u03b8',
+                '\u0399', '\u03b9',
+                '\u039a', '\u03ba',
+                '\u039b', '\u03bb',
+                '\u039c', '\u03bc',
+                '\u039d', '\u03bd',
+                '\u039e', '\u03be',
+                '\u039f', '\u03bf',
+                '\u03a0', '\u03c0',
+                '\u03a1', '\u03c1',
+                '\u03a3', '\u03c3',
+                '\u03a4', '\u03c4',
+                '\u03a5', '\u03c5',
+                '\u03a6', '\u03c6',
+                '\u03a7', '\u03c7',
+                '\u03a8', '\u03c8',
+                '\u03a9', '\u03c9',
+            ]],
+            ["Vertailuoperaattorit", [
+                '\u2265', '\u2264', '\u2248',
+            ]],
+            ["Logiikka", [
+                '\u21d0', '\u21d2', '\u21d4',
+                '\u2200', '\u2203',
+                '\u21af', '\u25a1',
+            ]],
+            ["Joukko-oppi", [
+                '\u2208',
+                '\u2209',
+                '\u2282',
+                '\u2284',
+                '\u2286',
+                '\u2288',
+                '\u228a',
+                '\u2205',
+            ]],
+            ["Lukujoukot", [
+                '\u2115',
+                '\u2115\u2080',
+                '\u2115\u2081',
+                '\u2124',
+                '\u2124\u208a',
+                '\u211a',
+                '\u211d',
+                '\u2102',
+            ]],
+            ["Yläindeksit", [
+                '\u2070',
+                '\xb9',
+                '\xb2',
+                '\xb3',
+                '\u2074',
+                '\u2075',
+                '\u2076',
+                '\u2077',
+                '\u2078',
+                '\u2079',
+            ]],
+            ["Alaindeksit", [
+                '\u2080',
+                '\u2081',
+                '\u2082',
+                '\u2083',
+                '\u2084',
+                '\u2085',
+                '\u2086',
+                '\u2087',
+                '\u2088',
+                '\u2089',
+            ]],
+            ["Muita merkkejä", [
+                '\u221e',
+                '\u222b',
+                '\u2192',
+            ]],
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            for (let [titleText, characterList] of characters) {
+                header = document.createElement('h3');
+                header.appendChild(document.createTextNode(titleText));
+                document.getElementById('character-display').appendChild(header);
+
+                for (let text of characterList) {
+                    button = document.createElement('button');
+                    button.onclick = (() => copyStringToClipboard(text));
+                    button.appendChild(document.createTextNode(text));
+                    document.getElementById('character-display').appendChild(button);
+                }
+            }
+        });
 
     </script>
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<div class="container">
     <p>Merkkinappulan klikkaaminen kopioi merkin leikepöydälle.</p>
 
     <div id="character-display">
     </div>
 
-    <hr />
+    <hr/>
 
     Tästä sivustosta on lisää tietoa
     <a href="https://github.com/Akuli/matikkamerkit">täällä</a>.
+</div>
 </body>
 
 </html>
