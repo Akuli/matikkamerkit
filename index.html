@@ -32,7 +32,7 @@
     }
 
     const characters = [
-        ["Kreikkalaiset aakkoset", [
+        ["Kreikkalaiset Aakkoset", [
             '\u0391', '\u03b1',
             '\u0392', '\u03b2',
             '\u0393', '\u03b3',
@@ -110,7 +110,7 @@
             '\u2088',
             '\u2089',
         ]],
-        ["Muita merkkejä", [
+        ["Muita Merkkejä", [
             '\u221e',
             '\u222b',
             '\u2192',
@@ -133,10 +133,30 @@
     });
 
     </script>
+    <style>
+        #head {
+            font-size: 25px;
+        }
+        
+        #character-display {
+            padding: 10px;
+        }
+        
+        #character-display button {
+            margin: 5px;
+            background-color: white;
+            border: none;
+        }
+        
+        #character-display button:hover {
+            background-color: antiquewhite; 
+            transition-duration: 0.5s;
+        }
+    </style>
 </head>
 
 <body>
-    <p>Merkkinappulan klikkaaminen kopioi merkin leikepöydälle.</p>
+    <p id="head">Merkkinappulan klikkaaminen kopioi merkin leikepöydälle.</p>
 
     <div id="character-display">
     </div>
