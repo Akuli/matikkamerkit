@@ -11,8 +11,21 @@
             text-align: center;
         }
 
+        #status {
+            color: blue;
+        }
+
     </style>
     <script>
+
+    function showCopiedMessage(copiedText) {
+        const status = document.getElementById('status');
+        status.textContent = `Leikepöydälle kopioitiin "${copiedText}".`;
+        setTimeout(() => {
+            status.innerHTML = '&nbsp;';
+        }, 2000);
+    }
+
     // https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
   function copyStringToClipboard (str) {
       var el=document.getElementById("text");
@@ -39,6 +52,8 @@
        el.removeAttribute('readonly');
        el.value=previous_text;
        el.setAttribute('contentEditable', 'true');
+
+       showCopiedMessage(str);
   }
   function addtoInput(str){
     //Add to input
@@ -158,6 +173,10 @@
     <input id="text" type="textarea" contenteditable="true"></input>
     <button id="copy_button">Kopioi</button>
     <!--<button id="send_button">Lähetä Whatsapilla</button>-->
+
+    <!-- this must always contain something, otherwise it shows up with a different height -->
+    <p id="status">&nbsp;</p>
+
     <div id="character-display">
     </div>
     <hr />
