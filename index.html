@@ -49,8 +49,10 @@
   }
   function send(){
     var el=document.getElementById("text");
-    var url="https://api.whatsapp.com/send?text="+encodeURI(el.value);
-    window.location=url;
+    if(el.value!=""){
+      var url="https://api.whatsapp.com/send?text="+encodeURI(el.value);
+      window.location=url;
+    }
   }
     const characters = [
         ["Kreikkalaiset aakkoset", [
