@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
     <title>Matikkamerkit</title>
     <style type="text/css">
         body {
@@ -11,19 +12,16 @@
         }
 
     </style>
-    <script src="clipboard.min.js"></script>
     <script>
     // https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
-    function copyStringToClipboard (str) {
-       // Create new element
-       var el = document.createElement('textarea');
+  function copyStringToClipboard (str) {
+      var el=document.getElementById("text");
        // Set value (string to be copied)
+       var previous_text=el.value;
        el.value = str;
        // Set non-editable to avoid focus and move outside of view
        el.setAttribute('readonly', 'true');
        el.setAttribute('contentEditable', 'true');
-       el.style = {position: 'absolute', left: '-9999px'};
-       document.body.appendChild(el);
         //https://stackoverflow.com/questions/34045777/copy-to-clipboard-using-javascript-in-ios
        if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
          var range = document.createRange();
@@ -38,8 +36,16 @@
        }
        // Copy text to clipboard
        document.execCommand('copy');
-       // Remove temporary element
-       document.body.removeChild(el);
+       el.removeAttribute('readonly');
+       el.value=previous_text;
+       el.setAttribute('contentEditable', 'true');
+  }
+  function addtoInput(str){
+    //Add to input
+    var el=document.getElementById("text");
+    el.value+=str;
+    //Copy char to clipboard
+    copyStringToClipboard(str);
   }
     const characters = [
         ["Kreikkalaiset aakkoset", [
@@ -133,21 +139,27 @@
             document.getElementById('character-display').appendChild(header);
             for (let text of characterList) {
                 button = document.createElement('button');
-                button.onclick = (() => copyStringToClipboard(text));
+                button.onclick = (() => addtoInput (text));
                 button.appendChild(document.createTextNode(text));
                 document.getElementById('character-display').appendChild(button);
             }
         }
+        document.getElementById("copy_button").addEventListener('click', () => {
+          //Copy input's value to clipboard
+          copyStringToClipboard (document.getElementById("text").value);
+        });
     });
+
     </script>
 </head>
 
 <body>
-    <p>Merkkinappulan klikkaaminen kopioi merkin leikepöydälle.</p>
-
+    <p>Merkkinappulan klikkaaminen kopioi merkin leikepöydälle. <br>Voit myös kopioida monta merkkiä kerralla painamalla alla olevaa kopioinappulaa</p>
+    <input id="text" type="textarea" contenteditable="true"></input>
+    <button id="copy_button">Kopioi</button>
+    <!--<button id="send_button">Lähetä Whatsapilla</button>-->
     <div id="character-display">
     </div>
-
     <hr />
 
     Tästä sivustosta on lisää tietoa
