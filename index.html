@@ -47,6 +47,11 @@
     //Copy char to clipboard
     copyStringToClipboard(str);
   }
+  function send(){
+    var el=document.getElementById("text");
+    var url="https://api.whatsapp.com/send?text="+encodeURI(el.value);
+    window.location=url;
+  }
     const characters = [
         ["Kreikkalaiset aakkoset", [
             '\u0391', '\u03b1',
@@ -144,6 +149,10 @@
                 document.getElementById('character-display').appendChild(button);
             }
         }
+        document.getElementById("send_button").addEventListener('click', () => {
+          //Copy input's value to clipboard
+          send();
+        });
         document.getElementById("copy_button").addEventListener('click', () => {
           //Copy input's value to clipboard
           copyStringToClipboard (document.getElementById("text").value);
@@ -157,7 +166,7 @@
     <p>Merkkinappulan klikkaaminen kopioi merkin leikepöydälle. <br>Voit myös kopioida monta merkkiä kerralla painamalla alla olevaa kopioinappulaa</p>
     <input id="text" type="textarea" contenteditable="true"></input>
     <button id="copy_button">Kopioi</button>
-    <!--<button id="send_button">Lähetä Whatsapilla</button>-->
+    <button id="send_button">Lähetä Whatsapilla</button>
     <div id="character-display">
     </div>
     <hr />
